@@ -1,43 +1,70 @@
 # Sistema Académico EvalPro
 
-Plataforma Web para la Gestión y Evaluación de Proyectos Académicos construida con React + Node.js + Express + MongoDB/Mongoose.
+Plataforma web para la gestión y evaluación de proyectos académicos, desarrollada con React, Node.js, Express y MongoDB bajo una arquitectura cliente-servidor.
 
-## Base documental usada
-Este proyecto aterriza el enfoque del documento final del curso, que exige una aplicación web cliente-servidor, parametrizable, con mínimo 5 mantenimientos y 5 salidas de información, frontend consumiendo backend, componentes, CSS y MongoDB/Express/React/Node fileciteturn0file2L1-L4. También respeta el Avance 2 del proyecto donde definiste la plataforma educativa, los módulos de usuarios/roles, periodos, proyectos, rúbricas, evaluaciones transaccionales y dashboard/reportes fileciteturn0file1L4-L6 fileciteturn0file1L7-L12.
+## Descripción general
 
-## Nombre final del sistema
+Sistema orientado a la administración integral de proyectos académicos dentro de una institución educativa. Permite gestionar usuarios, carreras, periodos académicos, tipos de proyecto, rúbricas de evaluación, asignaciones de evaluadores, resultados y reportes, manteniendo trazabilidad en cada fase del proceso.
+
+## Objetivo
+
+Centralizar el registro, seguimiento y evaluación de proyectos académicos mediante una solución web estructurada, parametrizable y alineada a un entorno académico real.
+
+## Nombre del sistema
+
 **Sistema Académico EvalPro**
 
-## Stack tecnológico
-- Frontend: React + Vite + React Router + Axios + Recharts
-- Backend: Node.js + Express + JWT + Mongoose
-- Base de datos: MongoDB local (usable desde VS Code y 3T Community)
-- Arquitectura: Cliente-Servidor + API REST + patrón MVC
+## Tecnologías utilizadas
+
+- React
+- Vite
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- JWT
+- Axios
+- Recharts
 
 ## Arquitectura general
+
 ### Frontend
-React consume servicios REST del backend, maneja autenticación, rutas protegidas, dashboards, CRUDs y flujo de evaluación.
+Aplicación web desarrollada en React para la gestión visual del sistema, navegación, formularios, dashboards, tablas y consumo de la API.
 
 ### Backend
-Express recibe peticiones HTTP, enruta hacia controladores, aplica middlewares de autenticación/autorización, usa modelos Mongoose y devuelve JSON.
+API REST construida con Node.js y Express, encargada de la lógica de negocio, autenticación, validaciones, controladores, rutas y conexión con MongoDB.
 
 ### Base de datos
-MongoDB almacena usuarios, carreras, periodos académicos, tipos de proyecto, proyectos, rúbricas, preguntas, asignaciones, evaluaciones y respuestas.
+MongoDB almacena la información principal del sistema mediante colecciones modeladas con Mongoose.
 
-## Módulos implementados
-- Autenticación JWT con sesión persistente en frontend
-- CRUD de usuarios por rol
-- CRUD de carreras
-- CRUD de periodos académicos parametrizables
-- CRUD de tipos de proyecto
-- CRUD de proyectos académicos
-- CRUD de rúbricas y preguntas
-- Asignación transaccional de evaluadores
-- Evaluación de proyectos con validación de rangos
+## Funcionalidades principales
+
+- Autenticación con control de acceso por roles
+- Gestión de usuarios
+- Gestión de carreras
+- Gestión de periodos académicos parametrizables
+- Gestión de tipos de proyecto
+- Gestión de proyectos académicos
+- Gestión de rúbricas y preguntas de evaluación
+- Asignación de docentes evaluadores
+- Evaluación de proyectos
 - Resultados por proyecto y por estudiante
-- Dashboard con estadísticas y reportes
+- Dashboard con indicadores y reportes
 
-## Estructura
+## Roles del sistema
+
+- Administrador
+- Coordinador
+- Docente
+- Estudiante
+
+### Categorías docentes
+- Docente metodológico
+- Docente temático
+- Docente evaluador
+
+## Estructura del proyecto
+
 ### Backend
 - `backend/src/config`
 - `backend/src/models`
@@ -57,11 +84,15 @@ MongoDB almacena usuarios, carreras, periodos académicos, tipos de proyecto, pr
 - `frontend/src/hooks`
 - `frontend/src/layouts`
 - `frontend/src/pages`
+- `frontend/src/routes`
 - `frontend/src/styles`
+- `frontend/src/utils`
 - `frontend/src/App.jsx`
 - `frontend/src/main.jsx`
 
-## Colecciones MongoDB
+## Base de datos
+
+### Colecciones principales
 - users
 - careers
 - academicperiods
@@ -73,115 +104,25 @@ MongoDB almacena usuarios, carreras, periodos académicos, tipos de proyecto, pr
 - evaluations
 - evaluationanswers
 
-## Credenciales de prueba
-- Admin: `admin@demo.com` / `Password123*`
-- Coordinador: `coordinador@demo.com` / `Password123*`
-- Docente evaluador: `evaluador1@demo.com` / `Password123*`
-- Estudiante: `estudiante1@demo.com` / `Password123*`
+## Módulos implementados
 
-## Instalación y ejecución
-### 1. Backend
+- Autenticación y acceso
+- Usuarios y roles
+- Carreras
+- Periodos académicos
+- Tipos de proyecto
+- Proyectos académicos
+- Rúbricas de evaluación
+- Asignación de evaluadores
+- Evaluación de proyectos
+- Resultados académicos
+- Dashboard y reportes
+
+## Ejecución del proyecto
+
+### Backend
 ```bash
 cd backend
-cp .env.example .env
 npm install
 npm run seed
 npm run dev
-```
-
-### 2. Frontend
-```bash
-cd frontend
-cp .env.example .env
-npm install
-npm run dev
-```
-
-### 3. URLS
-- Backend: `http://localhost:5000`
-- Frontend: `http://localhost:5173`
-
-## Flujo funcional recomendado para defensa
-1. Iniciar sesión como Admin
-2. Mostrar dashboard general
-3. Mostrar CRUD de carreras, periodos y tipos de proyecto
-4. Mostrar CRUD de usuarios y la parametrización por rol/categoría
-5. Mostrar creación/edición de rúbrica dinámica con rangos distintos
-6. Mostrar registro de proyecto con documento URL externo
-7. Mostrar asignación transaccional de evaluadores
-8. Entrar como docente evaluador y realizar una evaluación
-9. Mostrar resultados consolidados por proyecto/estudiante
-10. Cerrar con dashboard/reportes
-
-## Endpoints principales
-- `POST /api/auth/login`
-- `GET /api/auth/me`
-- `GET/POST/PUT/DELETE /api/users`
-- `GET/POST/PUT/DELETE /api/careers`
-- `GET/POST/PUT/DELETE /api/academic-periods`
-- `GET/POST/PUT/DELETE /api/project-types`
-- `GET/POST/PUT/DELETE /api/projects`
-- `GET/POST/PUT/DELETE /api/rubrics`
-- `GET /api/assignments`
-- `POST /api/assignments`
-- `GET /api/evaluations`
-- `GET /api/evaluations/:id`
-- `PUT /api/evaluations/:id`
-- `GET /api/results`
-- `GET /api/results/students/summary`
-- `GET /api/dashboard`
-
-## Postman rápido
-### Login
-```http
-POST /api/auth/login
-Content-Type: application/json
-
-{
-  "email": "admin@demo.com",
-  "password": "Password123*"
-}
-```
-
-### Crear proyecto
-```http
-POST /api/projects
-Authorization: Bearer {{token}}
-Content-Type: application/json
-
-{
-  "title": "Nuevo Proyecto Web",
-  "description": "Proyecto final cliente-servidor",
-  "projectTypeId": "{{projectTypeId}}",
-  "careerId": "{{careerId}}",
-  "periodId": "{{periodId}}",
-  "studentIds": ["{{studentId}}"],
-  "methodologyTeacherId": "{{methodTeacherId}}",
-  "thematicTeacherIds": ["{{thematicTeacherId}}"],
-  "documentUrl": "https://drive.google.com/file/d/example",
-  "status": "BORRADOR"
-}
-```
-
-### Asignar evaluadores
-```http
-POST /api/assignments
-Authorization: Bearer {{token}}
-Content-Type: application/json
-
-{
-  "projectId": "{{projectId}}",
-  "evaluatorIds": ["{{evaluator1}}", "{{evaluator2}}"],
-  "rubricTemplateId": "{{rubricId}}"
-}
-```
-
-## Cómo defender la parte parametrizable
-- Los periodos se crean por mantenimiento y no están quemados.
-- Los tipos de proyecto se crean por catálogo.
-- Las categorías y roles cambian el comportamiento del sistema.
-- Las rúbricas se construyen dinámicamente con preguntas, orden, min, max y peso.
-- Las evaluaciones usan la rúbrica asignada y validan rangos por pregunta.
-
-## Recomendación para MongoDB y 3T Community
-Crear una conexión local a `mongodb://127.0.0.1:27017/academic_project_platform` para inspeccionar las colecciones, relaciones y datos semilla durante la defensa.
